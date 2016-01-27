@@ -1,0 +1,240 @@
+/************************************************************************\
+	Vertis Aviation
+	---------------------------------------------------------------------
+	MODULE:		typography.scss
+	PURPOSE:	text styles 
+	@author:	dan moe & chris grace
+
+	CODEMAP:
+	---------------------------------------------------------------------
+	^1 GLOBAL TEXT STYLES
+
+	---------------------------------------------------------------------
+
+/************************************************************************/
+
+// ^1 GLOBAL TEXT STYLES
+//-----------------------------------------------------------------------/
+
+body {
+	@include bodoni();
+	color : $neutral;
+}
+
+.alert {
+	position : absolute;
+	z-index: 1040;
+	width : 100%;
+	text-align : center;
+	background : $primary;
+	color : #FFF;
+	margin : 0;
+	padding: 0.5em;
+	
+	a {
+		color : $secondary;
+
+		&:hover {
+			color : $neutral;
+		}
+	}
+}
+
+h1,
+p.leadtext {
+	@include bodoni($title:'true');
+	font-size : 2em;
+	color : #FFF;
+	text-align : center;
+	margin : 0;
+	@include transition();
+
+	@include MQ('medium') {
+		font-size : 4em;
+	}
+
+	@include MQ('xlarge') {
+		font-size : 5em;
+	}
+}
+
+.hero h1 {
+	@include centre();
+}
+
+.content h1 {
+	color : $primary;
+	font-size : 2.5em;
+	margin : 0.6em 0;
+}
+
+h2 {
+	margin : 0.5em 0 0.5em 0;
+	color : $primary;
+
+	@include MQ('medium', false) {
+		.profile & {
+			font-size : 1.6em;
+			margin-top : 0;
+		}
+	}
+
+	.content & {
+		font-size : 2.4em;
+		margin : 0 0 1em 0;
+	}
+}
+
+h3 {
+	color : $primary;
+
+	.leg_info & {
+		// margin : 0;
+	}
+}
+
+h4 {
+	font-size : 1.6em;
+	font-weight : 100;
+	line-height : 1.2em;
+
+	.content & {
+		margin : 0 0 1.5em 0;
+	}
+
+	.news-filter & {
+		margin-bottom : 0.25em;
+		text-transform: uppercase;
+		color: $primary;
+	}
+}
+
+h5 {
+	font-size : 1.3em;
+	font-weight : 100;
+	line-height : 1.2em;
+}
+
+p {
+	font-size : 1.3em;
+	line-height : 1.2em;
+
+	@include MQ('medium', false) {
+		.profile & {
+			font-size : 1em;
+		}
+	}
+
+	.content & {
+		margin : 0 0 1.5em 0;
+	}
+}
+
+p.subtext {
+	@include bodoni($title:'true');
+	font-size : 1em;
+	color : #FFF;
+	text-align : center;
+
+	@include MQ('medium') {
+		font-size : 2em;
+	}
+
+	@include MQ('large') {
+		font-size : 3em;
+	}
+}
+
+#footer {
+	color : #FFF;
+
+	p {
+		font-size : 0.9em;
+	}
+
+	p, .legals {
+		font-family: Helvetica, Arial, sans-serif;
+
+		a {
+			color : #FFF;
+			
+			&:hover {
+				color : $neutral;
+			}
+		}
+	}
+}
+
+.profile {
+	text-align : center;
+}
+
+.table {
+	font-size : 1.2em;
+
+	.head {
+		text-transform: uppercase;
+		color : $primary;
+	}
+
+	td {
+		border-top : none;
+		border-bottom : 1px solid $primary;
+		line-height: 1.1em !important;
+	}
+}
+
+.portfolio-links {
+	li {
+		font-size : 0.9em;
+		line-height : 1.1em;
+
+		@include MQ('large') {
+			font-size : 1.1em;
+		}
+		@include MQ('xlarge') {
+			font-size : 1.3em;
+		}
+	}
+}
+
+.address a {
+	color : $neutral;
+	&:hover {
+		color : $primary;
+	}
+}
+
+#empty-leg-modal {
+
+	h1 {
+		color : #FFF;
+		font-size : 3em;
+		padding-top : 2em;
+
+		@include MQ('medium') {
+			font-size : 3.5em;
+			padding-top : 0;
+		}
+	}
+
+	h4 {
+		color : #FFF;
+		text-align: center;
+		margin-bottom : 0;
+	}
+
+	.fleet-select label {
+		color : $secondary !important;
+		font-size : 1.1em;
+
+		@include MQ('medium') {
+			font-size : 1.5em;
+		}
+	}
+
+	fieldset:last-of-type label {
+		color : $secondary;
+	}
+
+}

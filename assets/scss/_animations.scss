@@ -1,0 +1,110 @@
+/************************************************************************\
+	Vertis Aviation
+	---------------------------------------------------------------------
+	MODULE:		animations.scss
+	PURPOSE:	keyframe animations and classes
+	@author:	dan moe & chris grace
+
+	CODEMAP:
+	---------------------------------------------------------------------
+	^1	Fade in
+	^2	Fade in and slide up
+	^3	Fade in and slide right
+	^4	Animation classes
+
+	---------------------------------------------------------------------
+	DO NO EDIT THE MAIN CSS FILE DIRECTLY. THE SKY WILL FALL DOWN !!!
+/************************************************************************/
+
+// https://css-tricks.com/add-page-transitions-css-smoothstate-js/
+// http://ninodezign.com/20-jquery-plugin-for-page-transition-effects-with-css3/
+
+// ^1 Fade in
+//-----------------------------------------------------------------------/
+
+@-webkit-keyframes fadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@keyframes fadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+// ^2 Fade in and slide up
+//-----------------------------------------------------------------------/
+
+@-webkit-keyframes fadeInAndSlideUp {
+	0% { 
+		opacity: 0; 
+		margin-top: 10%;
+	}
+	100% { 
+		opacity: 1; 
+		margin-top: 0;
+	}
+}
+
+@keyframes fadeInAndSlideUp {
+	0% { 
+		opacity: 0; 
+		margin-top: 10%;
+	}
+	100% { 
+		opacity: 1; 
+		margin-top: 0;
+	}
+}
+
+// ^3 Fade in and slide right
+//-----------------------------------------------------------------------/
+
+@-webkit-keyframes fadeInAndSlideRight {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(100%, 0, 0);
+		transform: translate3d(100%, 0, 0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none; 
+	} 
+}
+
+@keyframes fadeInAndSlideRight {
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(100%, 0, 0);
+		-ms-transform: translate3d(100%, 0, 0);
+		transform: translate3d(100%, 0, 0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: none;
+		-ms-transform: none;
+		transform: none; 
+	}
+}
+
+// ^4 Animation classes
+//-----------------------------------------------------------------------/
+
+.fadeIn {
+	-webkit-animation : fadeIn 0.5s ease-in;
+	animation : fadeIn 0.5s ease-in;
+}
+
+.fadeInAndSlideUp {
+	-webkit-animation : fadeInAndSlideUp 0.5s ease-in-out;
+	animation : fadeInAndSlideUp 0.5s ease-in-out;
+}
+
+.fadeInAndSlideRight {
+	-webkit-animation : fadeInRight 0.5s ease-in-out;
+	animation : fadeInRight 0.5s ease-in-out;
+}
+
+.is-exiting {
+	animation-direction: alternate-reverse;
+}

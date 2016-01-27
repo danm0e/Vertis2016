@@ -1,0 +1,324 @@
+/************************************************************************\
+	Vertis Aviation
+	---------------------------------------------------------------------
+	MODULE:		globals.scss
+	PURPOSE:	global classes and variables
+	@author:	dan moe & chris grace
+
+	CODEMAP:
+	---------------------------------------------------------------------
+	^1 COLOUR VARIABLES
+	^2 REUSABLE STYLE RULES
+		^2a Styled select drop downs
+		^2b Arrow links
+		^2c Call to action
+		^2d Jump down arrow
+		^2e Bootstrap modal
+		^2f Form fields
+
+/************************************************************************/
+
+// ^1 COLOUR VARIABLES
+//-----------------------------------------------------------------------/
+
+// GOLD
+$primary : #A29061;
+
+// DARK GREY
+$secondary : #29292B;
+
+// MID GREY
+$neutral : #585759; 
+$neutral-light : #757575; 
+
+// LIGHT: 757575 DARK : 4C4C4C
+
+// LIGHT GREY
+$light : #E0E0E1;
+$lightDeep : #DADADB;
+
+
+// ^2 REUSABLE STYLE RULES
+//-----------------------------------------------------------------------/
+
+a {
+	text-decoration : none !important;
+	outline: none !important;
+	@include transition();
+	color : $primary;
+
+	&:hover {
+		color : $neutral;
+	}
+}
+
+button {
+	outline: none;
+}
+
+.hero {
+	background-repeat : no-repeat;
+	background-size : cover !important;
+	background-position: center center !important;
+}
+
+// ^2a Styled select drop downs
+.select-wrap {
+	position : relative;
+	overflow: hidden;
+	background : $primary;
+	padding : 0.75em;
+	@include VP(border-radius, 0.5em);
+	@include transition();
+
+	@include MQ('small') {
+		width : 30%;
+		margin : auto;
+	}
+
+	span {
+		position : absolute;
+		color : #FFF;
+		font-size: 1.5em;
+		text-align: center;
+		width : 90%;
+		top : 0;
+		padding-top : 0.25em;
+
+		i {
+			font-style : normal;
+			font-size : 0.4em;
+		}
+	}
+
+	&:hover {
+		background : $secondary;
+	}
+
+	select {
+		width: 100%;
+		// height: 30px;
+		border: 0;
+		background: transparent;
+		-webkit-appearance: none;
+		opacity: 0;
+	}
+
+	option {
+		background : #FFF;	
+	}
+}
+
+// ^2b Arrow links
+.arrow-links {
+	padding : 1em;
+
+	li {
+		list-style: none;
+		display: inline-block;
+		margin-right : 3em;
+
+		a {
+			display : block;
+			font-family: Times, serif;
+			font-size : 1.2em;
+			text-transform: uppercase;
+			color : #FFF;
+
+			i {
+				display : block;
+				height : 20px;
+				width : 30px;
+				float : left;
+				margin-top : 5px;
+			}
+
+			&:hover {
+				color : $neutral;
+			}
+		}
+	}
+
+	@include MQ('xslandscape'){
+		margin-bottom : 0;
+
+		li {
+			margin-right : 1em;
+			a {
+				font-size : 1em;
+			}
+
+		}
+	}
+}
+
+.arrow {
+	@include sprite(-12px, -150px);
+}
+
+// ^2c Call to action
+.cta {
+	padding : 4em;
+	text-align : center;
+
+	.arrow-links {
+		a {
+			color : $primary;
+		}
+		.arrow {
+			background-position : -328px -150px;
+		}
+	}
+}
+
+// ^2d Jump down arrow
+
+.jumpdown {
+
+	a {
+		display : block;
+		width : 100px;
+		height : 30px;
+		margin : auto;
+
+		&:hover {
+			opacity: 0.3;
+		}
+
+		i {
+			display : block;
+			width : 50px;
+			height : 30px;
+			margin : auto;
+			@include sprite(-90px, -143px);
+		}
+	}
+}
+
+// ^2e Bootstrap modal
+
+body.modal-open {
+	padding-right : 0 !important; // override BS default 15px – WTAF.
+}
+
+.modal {
+	text-align: center;
+}
+
+.modal:before {
+	display: inline-block;
+	vertical-align: middle;
+	content: " ";
+	height: 100%;
+}
+
+.modal-dialog {
+	width : 90%;
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+
+	@include MQ('small') {
+		max-width: 1200px;
+	}
+}
+
+.modal-backdrop {
+	background-color : $primary;
+	opacity : 0.9 !important;
+}
+
+.modal-content {
+	background : transparent;
+	padding : 0;
+	box-shadow : none;
+	border : none;
+}
+
+.modal-header {
+	border : none;
+	position : relative;
+	max-width : 770px;
+	padding : 0;
+	margin : auto;
+}
+
+.close {
+	font-size : 4em;
+	color: #FFF;
+	text-shadow : none;
+	opacity: 1;
+	@include transition();
+
+	@include MQ('medium') {
+		position : absolute;
+		top : -2em;
+		right : -2em;
+	}
+
+	&:hover {
+		opacity: 0.5;
+	}
+}
+
+
+// ^2f Form fields
+
+form {
+	padding : 1em 1em 3em 1em;
+	max-width : 800px;
+	margin : auto !important;
+
+	div {
+		padding : 0.5em !important;
+	}
+
+	input[type=text],
+	input[type=tel],
+	input[type=email],
+	input[type=number],
+	textarea {
+		width : 100%;
+		border : none;
+		height : 35px;
+		padding : 1em;
+	}
+
+	textarea {
+		height : 200px;
+		margin-bottom: 1em;
+	}
+
+	input[type=checkbox] {
+		float : left;
+		margin-right : 1em;
+
+		+ label {
+			display : block;
+			color : $neutral-light;
+			font-weight: 100;
+			text-align: left;
+		}
+
+	}
+
+	button {
+		float : right;
+		border : none;
+		background : $neutral;
+		color : #FFF;
+		padding : 0.25em 2em;
+		@include transition();
+
+		&:hover {
+			background : $primary;
+
+			.modal & {
+				background : $secondary;
+			}
+		}
+	}
+}
+
+
+

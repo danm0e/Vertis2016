@@ -1,0 +1,1472 @@
+/************************************************************************\
+	Vertis Aviation
+	---------------------------------------------------------------------
+	MODULE:		structure.scss
+	PURPOSE:	core structure (inc. structural text positioning)
+	@author:	dan moe & chris grace
+
+	CODEMAP:
+	---------------------------------------------------------------------
+	^1	MASTHEAD
+		^1a burger icon
+		^1b main logo
+		^1c club vertis link
+		^1d right hand graphics and social links
+	^2	NAVIGATION
+	^3	FOOTER
+	^4	HOME PAGE INTRO
+		^4a split screen end point for home intro
+	^5	MAIN PAGE SPLIT SCREEN STYLES
+	^6	ARCHITECTS
+	^7	PORTFOLIO (FLEET)
+	^8	EMPTY LEGS
+	^9	NEWS
+
+/************************************************************************/
+
+/** DO NO EDIT THE MAIN .CSS FILES DIRECTLY. THE SKY WILL FALL DOWN!!! **/
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x : hidden;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+
+	&.fullscreen {
+		overflow : hidden;
+	}
+}
+
+body {
+	&.home {
+		background-color : $secondary;
+	}
+	&.page {
+		background-color : $light;
+	}
+}
+
+html,body{
+	&.flex {
+		height : 100%;
+	}
+}
+
+main {
+	height : calc(100% - 130px);
+}
+
+// ^1 MASTHEAD
+//-----------------------------------------------------------------------/
+
+#header {
+	background : $secondary;
+	border : none;
+	z-index : 999;
+	top: -130px;
+	@include transition();
+
+	&.in {
+		top: 0;
+	}
+}
+
+// ^1a burger icon
+.navbar-toggle {
+
+	.icon-bar {
+		display: block;
+		width: 40px;
+		height: 5px;
+		margin-bottom: 7px;
+		background-color: $primary !important;
+		@include VP(border-radius, 5px);
+		@include transition();
+
+		&:last-of-type {
+			margin-bottom : 0;
+		}
+	}
+
+	&.in {
+		position : relative;
+		z-index: 9999;
+
+		.icon-bar {
+			background-color: #FFF !important;
+			@include VP(transform, rotate(-45deg));
+			margin : 0;
+
+			&:last-of-type {
+				@include VP(transform, rotate(45deg));
+				margin-top : -10px;
+			}
+		}
+
+		.icon-bar:nth-child(3) {
+			opacity : 0;
+		}
+	}
+
+	&:hover .icon-bar {
+		background-color: $neutral !important;
+	}
+
+}
+
+.navbar-header {
+	position: relative;
+	height : 130px;
+	width : 100%;
+
+	> button {
+		display : block;
+		margin : 0;
+		height : 130px;
+		padding : 1em;
+		border : none;
+		background : transparent !important;
+		@include transition();
+
+		@include MQ('small') {
+			padding-left : 2em;
+			float : left;
+		}
+	}
+}
+
+// ^1b main logo
+.logo {
+	margin : 0;
+    height: 130px;
+    margin: auto;
+
+	.navbar-brand {
+	    margin: auto !important;
+	    display: block;
+	    width: 130px;
+	    height: 110px;
+	    float : none;
+		@include sprite(-25px,20px);
+		@include transition('opacity');
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+}
+
+// ^1c club vertis link
+.club-vertis {
+	float : left;
+
+	.inner {
+		width : 45px;
+		height : 45px;
+		padding : 0.5em;
+		background-color : $primary;
+		@include VP(border-radius,0.5em);
+		@include transition();
+		@include sprite(-1px, -90px);
+	}
+
+	&:hover .inner {
+		background-color : $neutral;
+	}
+}
+
+// ^1d right hand graphics and social links
+.architects-logo {
+	width : 180px;
+	height : 60px;
+	@include sprite(-180px,-15px);
+}
+
+.nav-right {
+	float : right;
+
+	.architects-logo {
+		float : right;
+		border-left : 1px solid $primary;
+		margin : 35px 20px ;
+	}
+}
+
+.social {
+	margin : 0;
+	float : left;
+
+	li {
+		list-style : none;
+		float : left;
+
+		a {
+			display : block;
+			padding : 45px 0.5em;
+			font-size : 2em;
+			color : $primary;
+
+			&:hover {
+				color : $neutral;
+			}
+		}
+	}
+}
+
+// ^2 NAVIGATION
+//-----------------------------------------------------------------------/
+
+.main-nav {
+	position : fixed;
+	z-index : 1000;
+	width : 100%;
+	height : 100%;
+	overflow-y : scroll;
+	padding : 1em;
+	background-color : $primary;
+	opacity : 0;
+	margin-left : -100%;
+	@include transition();
+
+	.topmenu {
+		padding : 0;
+		clear : both;
+		margin-top : 6em;
+
+		@include MQ('small') {
+			padding-top : 3em;
+		}
+
+		> li {
+			list-style : none;
+			@include transition();
+			margin-left : -100%;
+
+			> a {
+				display : block;
+				text-align : center;
+				padding : 0.5em;
+				font-size : 1em;
+				text-transform : uppercase;
+				color : $neutral;
+
+				@include MQ('small') {
+					font-size : 1.5em;
+					padding : 0.7em;
+				}
+
+				&:hover {
+					color : #FFF;
+				}
+			}
+		}
+	}
+
+	&.in {
+		opacity : 1;
+		margin-left : 0;
+
+		> ul > li.in {
+			margin-left : 0;
+		}
+	}
+
+	@include MQ('small') {
+		width : 400px;
+		overflow : visible;
+	}
+
+	.social {
+		float : none;
+		width : 270px;
+		padding-left : 0;
+		margin : auto ;
+
+		li a {
+			color : $neutral;
+
+			&:hover {
+				color : #FFF;
+			}
+		}
+	}
+
+	.architects-logo {
+		margin : auto;
+	}
+}
+
+// ^3 FOOTER
+//-----------------------------------------------------------------------/
+
+#footer {
+	position : fixed;
+	bottom : 0;
+	width : 100%;
+	height : 0;
+	background-color : $primary;
+	@include transition();
+
+	&.in {
+		height : 430px;
+		z-index : 1036;
+
+		@include MQ('xslandscape'){
+			height : 200px;
+		}
+
+		@include MQ('small') {
+			height : 280px;
+		}
+
+		@include MQ('medium') {
+			height : 230px;
+		}
+
+		@include MQ('large') {
+			height : 200px;
+		}
+	}
+
+	> button {
+		width : 50px;
+		height : 30px;
+		border : none;
+		background-color : $primary;
+		position : absolute;
+		top : -30px;
+		left : 0;
+		right : 0;
+		margin : auto;
+		@include transition();
+
+		&:hover {
+			background-color : $neutral;
+		}
+
+		.icon-bar {
+			display: block;
+			width: 21px;
+			height: 3px;
+			margin-bottom: 7px;
+			background-color: #FFF !important;
+			@include VP(border-radius, 5px);
+			@include transition();
+			@include VP(transform, rotate(-30deg));
+			position : absolute;
+			left: 7px;
+
+			&:last-of-type {
+				@include VP(transform, rotate(30deg));
+				left : 23px;
+			}
+		}
+
+		&.in .icon-bar {
+			@include VP(transform, rotate(-45deg));
+			left : 14px;
+
+			&:last-of-type {
+				@include VP(transform, rotate(45deg));
+			}
+		}
+	}
+
+	.inner {
+		padding : 2em 1em;
+		@include MQ('xslandscape'){
+			padding : 1em;
+		}
+
+		> div:first-of-type {
+			padding : 0 15px;
+		}
+	}
+
+	.partner-logos {
+		padding : 0;
+		text-align : center;
+
+		li {
+			list-style : none;
+			display : inline-block;
+			height : 58px;
+			@include sprite();
+
+			&.afbaa {
+				background-position : 0 -202px;
+				width : 85px;
+			}
+
+			&.baca {
+				background-position : -92px -202px;
+				width : 85px;
+			}
+
+			&.nbaa {
+				background-position : -190px -202px;
+				width : 115px;
+			}
+
+			&.ebaa {
+				background-position : -200px -136px;
+				width : 105px;
+			}
+		}
+
+		@include MQ('medium') {
+			text-align: right;
+		}
+	}
+
+	.contact-list {
+		padding-bottom : 1em;
+
+		@include MQ('xslandscape'){
+			> div {
+				width : 50%;
+				float : left;
+
+				p {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	.legals {
+		padding : 1em 0 0 0;
+
+		@include MQ('xslandscape'){
+			padding-top : 0;
+		}
+
+		li {
+			list-style : none;
+			display : inline-block;
+			padding-right : 1em;
+			border-right : 1px solid #FFF;
+
+
+			a {
+				display : block;
+				padding-left : 1em;
+				font-size : 0.8em;
+			}
+
+			&:first-of-type a {
+				padding-left : 0;
+			}
+
+			&:last-of-type {
+				border-right : none;
+			}
+		}
+	}
+
+	.copyright {
+		@include MQ('xslandscape'){
+			p {
+				font-size : 0.8em;
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	@include MQ('medium') {
+		.copyright {
+
+			p, ul {
+				text-align: right;
+			}
+
+			.legals {
+				padding-top : 0;
+
+				li:last-of-type {
+					padding-right : 0;
+				}
+			}
+		}
+	}
+}
+
+
+// ^4 HOME PAGE INTRO
+//-----------------------------------------------------------------------/
+
+.skip-intro {
+	position : absolute;
+	z-index : 100;
+	bottom : 0;
+	left : 0;
+	right : 0;
+	margin : auto;
+	width : 100px;
+	height : 30px;
+	padding : 0.5em;
+	background : $primary;
+	text-align : center;
+	text-transform : uppercase;
+	letter-spacing : 0.075em;
+	color : #FFF !important;
+
+	&:hover {
+		background : $secondary;
+	}
+
+	&.out {
+		bottom : -30px;
+	}
+}
+
+.home-intro {
+	margin-top : 130px;
+	height : calc(100% - 130px);
+
+	&.out {
+		display : none;
+	}
+
+	.ms-left {
+		width : 100% !important;
+
+		@include MQ('small') {
+			width : 50% !important;
+		}
+	}
+
+	.ms-right {
+		visibility: hidden; 
+
+		@include MQ('small') {
+			visibility: visible; 
+		}
+	}
+
+	.ms-section {
+		width : 100%;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	    overflow : hidden;
+
+		&.left {
+			background-position : center;
+
+			@include MQ('small') {
+				background-position : center right !important;
+			}
+
+			&.one {
+				background-image : url('../img/heroes/FULL/jet.jpg');
+
+				@include MQ('small') {
+					background-image : url('../img/heroes/SPLIT/jet-left.jpg');
+				}
+			}
+
+			&.two {
+				background-image : url('../img/heroes/FULL/ladydress.jpg');
+
+				@include MQ('small') {
+					background-image : url('../img/heroes/SPLIT/ladydress-left.jpg');
+				}
+			}
+
+			&.three {
+				background-image : url('../img/heroes/FULL/wine.jpg');
+
+				@include MQ('small') {
+					background-image : url('../img/heroes/SPLIT/wine-left.jpg');
+				}
+			}
+
+			&.four {
+				background-image : url('../img/heroes/FULL/dancer.jpg');
+
+				@include MQ('small') {
+					background-image : url('../img/heroes/SPLIT/dancer-left.jpg');
+				}
+			}
+
+			&.five {
+				background-image : url('../img/heroes/FULL/couple.jpg');
+
+				@include MQ('small') {
+					background-image : url('../img/heroes/SPLIT/couple-left.jpg');
+				}
+			}
+
+			&.six {
+				background-image : url('../img/heroes/FULL/newyork.jpg');
+
+				@include MQ('small') {
+					background-image : url('../img/heroes/SPLIT/newyork-left.jpg');
+				}
+			}
+		}
+
+		&.right {
+			background-position : center left;
+
+			&.one {
+				background-image : url('../img/heroes/SPLIT/jet-right.jpg');
+			}
+
+			&.two {
+				background-image : url('../img/heroes/SPLIT/ladydress-right.jpg');
+			}
+
+			&.three {
+				background-image : url('../img/heroes/SPLIT/wine-right.jpg');
+			}
+
+			&.four {
+				background-image : url('../img/heroes/SPLIT/dancer-right.jpg');
+			}
+
+			&.five {
+				background-image : url('../img/heroes/SPLIT/couple-right.jpg');
+			}
+
+			&.six {
+				background-image : url('../img/heroes/SPLIT/newyork-right.jpg');
+			}
+
+			.text {
+				@include VP(transform, translateX(-50%));
+			}
+		}
+
+		.text {
+			position: absolute;
+			width : 100%;
+			// height : 400px;
+			// background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+			// background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+			// background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+			@include MQ('small') {
+				width : 200%;
+			}
+		}
+
+		&.out {
+			opacity: 0;
+		}
+	}
+}
+
+// ^4a split screen end point for home intro
+
+.home-nav {
+	visibility : hidden;
+	opacity : 0;
+	@include transition('opacity', 3s);
+
+	&.in {
+		visibility : visible;
+		opacity : 1;
+	}
+
+	> a {
+		height : calc(50% - 65px);
+		width : 100%;
+		position : absolute;
+
+		.inner {
+			display : table;
+			width : 100%;
+			height : 100%;
+			@include transition();
+		}
+
+		&:hover .inner{
+			background : rgba($secondary, 0.8);
+		}
+
+		@include MQ('medium') {
+			height : 100%;
+			width : 50%;
+		}
+
+		.leadtext {
+			display : table-cell;
+			vertical-align: middle;
+		}
+
+		&:last-of-type {
+			bottom : 0;
+
+			@include MQ('medium') {
+				right : 0;
+				bottom : auto;
+			}
+		}
+
+		&.the-architects {
+			background-image : url('../img/heroes/FULL/architects.jpg');
+			background-position : center;
+			background-size : cover;
+		}
+
+		&.portfolio {
+			background-image : url('../img/heroes/FULL/takeoff.jpg');
+			background-position : center;
+			background-size : cover;
+		}
+	}
+}
+
+.ms-left.fullwidth {
+	width : 100% !important;
+}
+
+// ^5 MAIN PAGE SPLIT SCREEN STYLES
+//-----------------------------------------------------------------------/
+
+main {
+	margin-top : 130px;
+
+	.page & {
+		position : relative;
+	}
+
+	.split-v {
+		width : 100%;
+		float : left;
+
+		@include MQ('medium') {
+			width : 50%;
+			float : right;
+			height : 100%;
+			position : fixed;
+		}
+
+		&.left {
+			background : $neutral-light;
+		}
+
+		&.right {
+			right : 0;
+
+			&.scrollable {
+				position : static;
+			}
+
+			.top {
+				margin : 1em;
+
+				@include MQ('medium') {
+					margin : 0;
+				}
+			}
+		}
+
+		&.hero {
+			position : relative;
+			height : 300px;
+
+			@include MQ('medium') {
+				position : fixed;
+				height : calc(100% - 130px);
+			}
+		}
+
+		&.content {
+			padding : 2em 2em 0;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			@include MQ('medium') {
+				padding : 4em 4em 0;
+			}
+
+			@include MQ('xlarge'){
+		    	padding : 4em 8em 0;
+			}
+		}
+
+		.split-h {
+			position : relative;
+
+			&.top {
+				height : 200px;
+				background : #999;
+
+				@include MQ('small', false) {
+					&.profile-img {
+						height : 350px;
+					}
+				}
+
+				@include MQ('medium') {
+					height : calc(40% - 65px );
+
+					&.fix {
+						height : 300px;
+						@include transition();
+					}
+				}
+
+				@include MQ('mdlandscape'){
+					&.fix {
+						height : 200px;
+					}
+				}
+
+				@include MQ('xlarge'){
+					&.fix {
+						height : 450px;
+					}
+				}
+			}
+
+			&.bottom {
+				padding : 1em;
+
+				&.fleet {
+					text-align : left;
+				}
+
+				@include MQ('medium') {
+					height : calc(60% - 65px );
+					padding : 2em;
+				}
+
+				@include MQ('large') {
+					padding : 4em;
+				}
+			}
+		}
+	}
+}
+
+// ^6 ARCHITECTS
+//-----------------------------------------------------------------------/
+
+.architects-list {
+	padding : 0;
+	margin : 0;
+	text-align : center;
+
+	li {
+		list-style: none;
+		font-size : 1.5em;
+		word-wrap: break-word;
+		text-align : center;
+
+
+		@include MQ('medium', false) {
+			float : left;
+			width : 20%;
+			font-size : 1em;
+		}
+
+		@include MQ('medium') {
+			display : inline-block;
+		}
+
+		a {
+			display : block;
+			padding : 0.5em;
+			color : #000;
+
+			img {
+				opacity: 0.5;
+				margin : auto;
+			}
+
+			&:hover {
+				background : $primary;
+				color : #FFF;
+
+				@include MQ('medium') {
+					background : transparent;
+				}
+
+				img {
+					opacity: 1;
+				}
+			}
+
+			img {
+				margin-bottom: 1em;
+				@include transition();
+			}
+		}
+	}
+}
+
+.partner-contact {
+	text-align : center;
+	padding-top : 2em;
+	color : $primary;
+	margin : auto;
+
+	> a {
+		color : $primary;
+		font-size : 2em;
+
+		&:hover {
+			color : $neutral;
+		}
+	}
+
+	ul {
+		padding : 0;
+
+		li {
+			list-style : none;
+			display : inline-block;
+			margin-right: 0.5em;
+
+			a {
+				color : $primary;
+				&:hover {
+					color : $secondary;
+				}
+			}
+		}
+	}
+
+	@include MQ('small') {
+		text-align : left;
+
+		> a {
+			float : left;
+			margin-right: 0.5em;
+		}
+
+		ul {
+			float : left;
+			width : 350px;
+		}
+	}
+
+	@include MQ('medium') {
+		width : 430px;
+	}
+}
+
+// ^7 PORTFOLIO (FLEET)
+//-----------------------------------------------------------------------/
+
+.portfolio-links {
+	padding : 0;
+	margin : 0;
+	text-align : center;
+	max-width: 700px;
+	margin : auto;
+
+	li {
+		list-style: none;
+		display : table;
+		width : 33.3%;
+		float : left;
+		min-height: 50px;
+		@include transition();
+
+		a {
+			display : table-cell;
+			vertical-align: middle;
+			color : #FFF;
+			padding : 0.5em;
+
+			&:hover {
+				background : $primary;
+				color : $neutral;
+
+				@include MQ('medium') {
+					background : transparent;
+				}
+			}
+		}
+
+		@include MQ('large') {
+			margin-bottom : 0;
+			display : inline-block;
+			width : 50%;
+			min-height: auto;
+
+			a {
+				border : none;
+				display : block;
+			}
+		}
+	}
+}
+
+.fleet-header {
+	background : $primary;
+    padding : 1em;
+    margin: -1em -1em 2em;
+
+    @include MQ('medium', false) {
+    	margin: -2em -2em 2em;
+    	padding-top : 1.5em;
+    }
+
+    @include MQ('large') {
+    	margin: -4em -4em 4em;
+    }
+
+	h2 {
+		color : #FFF;
+	    text-align : center;
+	}
+}
+
+.fleet-links {
+	margin-bottom : 1em;
+
+	ul {
+		padding : 0;
+
+		li {
+			list-style: none;
+
+			a {
+				display : block;
+				border : 2px solid $primary;
+				color : $primary;
+				padding : 0.25em 0.5em;
+				position : relative;
+				text-align : center;
+				@include VP(border-radius, 0.5em);
+
+				&:hover {
+					color : #FFF;
+					background : $neutral;
+					border-color : $neutral;
+
+					@include MQ('small') {
+						color: $neutral;
+						background: transparent;
+						border : none;
+					}
+				}
+
+				i {
+					display : inline-block;
+					height : 35px;
+					width : 35px;
+					position : absolute;
+					right : 0.5em;
+					top : 0.25em;
+					color : $primary !important;
+
+					&.tour {
+						@include sprite(-289px,-95px);
+						width : 55px;
+					}
+
+					&.alerts {
+						font-size : 1.5em;
+					}
+				}
+
+				@include MQ('small') {
+					border : none;
+					padding-left : 0;
+					font-size : 1.4em;
+					text-align : left;
+
+					i {
+						position : static;
+						margin : 0 0 -0.35em 0.5em;
+
+						&.alerts {
+							margin-top: -0.2em;
+						}
+					}
+				}
+
+				@include MQ('large') {
+					font-size : 1.6em;
+				}
+			}	
+		}
+	}
+}
+
+.floorplan {
+	padding : 1em;
+	position : relative;
+
+	@include MQ('large') {
+		padding : 0 4em 4em;
+	}
+
+	.inner {
+
+		&:before {
+			content : '';
+			display : block;
+			height : 43px;
+			width : 43px;
+			@include sprite(-47px,-92px);
+		}
+	}
+
+	&.night {
+		background : $neutral;
+		padding-top : 2em;
+
+		.inner:before {
+			background-position : -92px -92px;
+		}
+	}
+}
+
+// ^8 EMPTY LEGS
+//-----------------------------------------------------------------------/
+
+.leg_wrapper {
+	padding-bottom : 3em;
+}
+
+.leg_info {
+	margin-left : -2em;
+	margin-right : -2em;
+	text-align : left;
+
+	@include MQ('medium') {
+		margin-left : -4em;
+		margin-right : -4em;
+	}
+
+	@include MQ('xlarge') {
+		margin-left : -8em;
+		margin-right : -8em;
+	}
+
+	.inner {
+		padding : 1em;
+
+		@include MQ('small') {
+			padding : 0 1em;
+		}
+
+		@include MQ('medium') {
+			padding : 1em;
+		}
+
+		@include MQ('large') {
+			padding : 0 4em;
+		}
+	}
+
+	img_{
+		margin : auto;
+	}
+
+	.leg_info--date {
+		padding-left : 0;
+		border-right : 1px solid $primary;
+	}
+
+	.leg_info--destination {
+		padding-left : 2em;
+	}
+
+	&:nth-child(even) {
+		background : $lightDeep;
+	}
+}
+
+#empty-leg-modal {
+
+    @include MQ('medium') {
+		.fleet-select {
+			input {
+				margin-top : 0.75em;
+			}
+		}
+	}
+
+	fieldset:nth-child(2){
+		padding-top : 1.5em;
+	}
+}
+
+// ^9 NEWS
+//-----------------------------------------------------------------------/
+
+.news-filter {
+	background : #FFF;
+    margin: -2em -2em 2em;
+	padding : 1em;
+
+    @include MQ('medium') {
+    	margin: -4em -4em 4em;
+    }
+
+    @include MQ('large') {
+		padding : 2em;
+    }
+
+    @include MQ('xlarge') {
+    	margin: -4em -8em 4em;
+    }
+
+    > section {
+    	text-align: left;
+    	padding : 1em 1em 0 1em;
+
+    	ul {
+    		padding : 0 0 1em 0;
+    		margin-bottom : 0;
+
+    		li {
+    			list-style : none;
+    			display : inline-block;
+    			border-right : 1px solid $primary;
+    			font-size : 0.8em;
+    			margin-bottom: 0.75em; 
+    			text-align: center;
+
+				@include MQ('large'){
+	    			font-size : 1em;
+				}
+
+    			&:nth-child(4n),
+    			&:last-of-type {
+    				border : none;
+    			}
+
+    			a {
+    				color : $neutral;
+
+    				&:hover {
+    					color : $primary;
+    				}
+    			}
+    		}
+    	}
+
+		&.archive-list {
+			border-bottom : 1px solid $light;
+
+			@include MQ('small'){
+				border-bottom: none;
+			}
+		}
+    }
+}
+
+.news-wrapper {
+    margin: -2em -2em 0;
+
+    @include MQ('medium') {
+    	margin: -4em -4em 0;
+    }
+
+    @include MQ('xlarge') {
+    	margin: -4em -8em 0;
+    }
+
+    .news-link {
+    	display : block;
+    	height : 300px;
+		position : relative;
+		background-color : $primary; 
+
+		div {
+	    	height : 100%;
+	    	width : 100%;
+	    	position : absolute;
+	    	top : 0;
+	    	left : 0;
+		}
+
+		.mask {
+	    	background : rgba($secondary,0);
+			@include transition();
+			z-index: 1;
+		}
+
+		.bg-img {
+			background-position : center !important;
+			background-size : cover !important;
+			display : none;
+		}
+
+    	h3 {
+    		@include centre;
+    		margin : 0;
+			color : #FFF;
+			z-index: 2;
+    	}
+
+    	&:nth-child(even){
+    		.bg-img {
+    			display : block;
+    		}
+    	}
+
+		@include MQ('small'){
+    		.bg-img {
+    			display : block;
+    		}
+
+			&:first-child,
+			&:nth-child(4),
+			&:nth-child(5),
+			&:nth-child(8),
+			&:nth-child(9) {
+	    		.bg-img {
+	    			display : none;
+	    		}
+    		}
+		}
+    }
+
+    .content {
+    	padding : 2em;
+
+		@include MQ('small'){
+	    	padding : 4em;
+		}
+
+		@include MQ('xlarge'){
+	    	padding : 4em 8em 4em;
+		}
+
+		.row {
+			max-width : 900px;
+			margin: auto;
+			margin-bottom : 2em;
+			
+			img {
+				margin : auto;
+			}
+		}
+    }
+}
+
+.search-trigger {
+	display : block;
+	border : none;
+	height : 30px;
+	width : 30px;
+	background-color : transparent;
+	@include sprite(-56px,-146px);
+	@include transition();
+
+	&:hover {
+		opacity: 0.5;
+		.mobile-search-wrap & {
+			opacity: 1;
+		}
+	}
+}
+
+.pagination {
+	width : 100%;
+	margin-bottom : 4em;
+
+	ul {
+		width : 100%;
+		display : block;
+		padding : 0;
+
+		@include MQ('small'){
+			display : inline;
+		}
+
+		li {
+			list-style : none;
+			display : inline-block;
+			margin-right : 1em;
+
+			a {
+				color : $neutral;
+
+				i {
+					margin-right : 0.5em;
+				}
+
+				&:hover {
+					color : $primary;
+				}
+			}
+
+			&.like a,
+			&.comment a {
+				color : $primary;
+				&:hover {
+					color : $neutral;
+				}
+			}
+
+			&.button a {
+				display : block;
+				padding : 0.25em 1em;
+				color : #FFF;
+				background : $primary; 
+
+				&:hover {
+					background : $neutral;
+				}
+			}
+		}
+	}
+}
+
+.news-wrapper a:hover .mask {
+	background : rgba($secondary,1) !important;
+}
+
+.address:last-of-type {
+	padding-top :1.5em;
+}
+
+// larger desktop search
+#search-modal {
+
+	input {
+		background : transparent;
+		height : 100px;
+		border : 1px solid #FFF;
+		outline: none;
+
+		@include MQ('medium') {
+			border : none;
+			border-bottom : 1px solid #FFF;
+		}
+	}
+
+	input, p {
+		color : #FFF;
+		font-size : 2em;
+		font-style : italic;
+	}
+
+	p {
+		text-align:  center;
+	}
+}
+
+// mobile and tablet, small desktop search
+.mobile-search-wrap {
+	width : 100%;
+	margin-bottom : 1em;
+
+	.search-trigger {
+		float : left;
+	}
+
+	form {
+		float : left;
+		padding : 0;
+		width : 85%;
+	}
+
+	input {
+		border : 1px solid #CCC !Important;
+	}
+}
